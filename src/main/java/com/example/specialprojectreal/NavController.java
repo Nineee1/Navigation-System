@@ -30,12 +30,12 @@ public class NavController implements Initializable {
     int hallNameIndex = 0;
     boolean desReached = false;
     boolean newHall = true;
-    int V = 37; //verticies
+    int V = 4; //verticies
     Node src_node;
     Node destination_node;
     Text src_text;
     Rectangle rec = new Rectangle();
-    ImageView image = new ImageView(new Image("C:\\Users\\wusua\\OneDrive\\Documents\\GitHub\\Navigation-System\\src\\img\\Web_capture_1-11-2023_94011_.jpeg"));
+    ImageView image = new ImageView(new Image("C:\\Users\\wusua\\OneDrive\\Documents\\GitHub\\Navigation-System\\src\\img\\arrow.png"));
     PathTransition transition = new PathTransition();
     Path path = new Path();
 
@@ -67,11 +67,8 @@ public class NavController implements Initializable {
             adj_list.add(item);
         }
         String[] roomNames = {
-                "Main", "One Stop", "Hall-100", "Restroom-100", "Room-102", "Room-104", "Room-106", "Room-107",
-                "Hall 100x800", "Room-802", "Exit/Entrance-800", "Room-804", "Room-801", "Room-803",
-                "Room-805", "Room-808", "Room-810", "Room-807", "Room-812", "Room-814", "Restroom-800",
-                "Room-813", "Hall 800x500", "Room-529", "Hall 500x650", "Room-528", "Room-527", "Student-Lounge-606",
-                "Hall 500x600", "Room-604-Police", "Room-605", "Hall 600x300", "Room-601","Room-315","Room-319","Room-321","Room-323"
+                "Main", "One Stop", "Hall-200", "Restroom-200", "Room-223", "Room-225", "Room-227"
+                , "Room-224", "Room-226", "Room-228", "Room-225"
         };
 
         rec.setHeight(10);
@@ -82,119 +79,12 @@ public class NavController implements Initializable {
 
         // Input graph edges
         adj_list.get(0).add(new Node(1, 16, "One Stop")); //Main to One Stop
-        adj_list.get(0).add(new Node(32, 4, "Hall-100")); //Main to Hall 100
-        adj_list.get(32).add(new Node(2, 2, "Restroom-100")); //Hall 100 to Restroom 100
-        adj_list.get(32).add(new Node(0, 4, "Main")); //Hall 100 to Main
+        adj_list.get(0).add(new Node(2, 4, "Hall-200")); //Main to Hall 200
+        adj_list.get(2).add(new Node(3, 2, "Restroom-200")); //Hall 200 to Restroom 200
+        adj_list.get(2).add(new Node(0, 4, "Main")); //Hall 200 to Main
+        adj_list.get(3).add(new Node(2, 2, "Hall-200")); //Restroom 200 to Hall 200
+        adj_list.get(2).add(new Node(1, 4, "One Stop")); //Hall 200 to One Stop
 
-
-        adj_list.get(1).add(new Node(0, 16, "Main")); //One Stop to Main
-
-        adj_list.get(2).add(new Node(3, 8, "Room-102")); //Restroom to Room 102
-        adj_list.get(2).add(new Node(32, 2, "Hall-100")); //Restroom to Hall 100
-
-        adj_list.get(3).add(new Node(2, 8, "Restroom-100")); //Room 102 to Restroom 100
-
-        adj_list.get(3).add(new Node(4, 9, "Room-104")); //Room 102 to 104
-        adj_list.get(4).add(new Node(3, 9, "Room-102")); //Room 104 to 102
-
-        adj_list.get(4).add(new Node(5, 1, "Room-106")); //Room 104 to 106
-        adj_list.get(5).add(new Node(4, 1, "Room-104")); //Room 106 to 104
-
-        adj_list.get(5).add(new Node(6, 10, "Room-107")); //Room 106 to 107
-        adj_list.get(6).add(new Node(5, 10, "Room-106")); //Room 107 to 106
-
-        adj_list.get(5).add(new Node(7, 4, "Hall 100x800")); //Room 106 to Hall 100x800
-        adj_list.get(7).add(new Node(5, 4, "Room-106")); //Hall 100x800 to Room 106
-
-        adj_list.get(7).add(new Node(8, 8, "Room-802")); //Hall 100x800 to 802
-        adj_list.get(8).add(new Node(7, 8, "Hall 100x800")); //Hall 802 to 100x800
-
-        adj_list.get(8).add(new Node(9, 1, "Exit/Entrance-800")); //Room 802 to Exit800
-        adj_list.get(9).add(new Node(8, 1, "Room-802")); //Room Exit800 to Room 802
-
-        adj_list.get(7).add(new Node(10, 5, "Room-804")); // 100800 to 804
-        adj_list.get(10).add(new Node(7, 5, "Hall 100x800")); // 804 to 100800
-
-        adj_list.get(10).add(new Node(11, 5, "Room-801")); //Room 804 to 801
-        adj_list.get(11).add(new Node(10, 5, "Room-804")); //Room 801 to 804
-
-        adj_list.get(11).add(new Node(12, 6, "Room-803")); //Room 801 to 803
-        adj_list.get(12).add(new Node(11, 6, "Room-801")); //Room 803 to 801
-
-        adj_list.get(12).add(new Node(13, 1, "Room-805")); //Room 803 to 805
-        adj_list.get(13).add(new Node(12, 1, "Room-803")); //Room 805 to 803
-
-        adj_list.get(13).add(new Node(14, 5, "Room-808")); //Room 805 to 808
-        adj_list.get(14).add(new Node(13, 5, "Room-805")); //Room 808 to 805
-
-        adj_list.get(14).add(new Node(15, 1, "Room-810")); //Room 808 to 810
-        adj_list.get(15).add(new Node(14, 1, "Room-808")); //Room 810 to 808
-
-        adj_list.get(15).add(new Node(16, 2, "Room-807")); //Room 810 to 807
-        adj_list.get(16).add(new Node(15, 2, "Room-810")); //Room 807 to 810
-
-        adj_list.get(16).add(new Node(17, 2, "Room-812")); //Room 807 to 812
-        adj_list.get(17).add(new Node(16, 2, "Room-807")); //Room 812 to 807
-
-        adj_list.get(17).add(new Node(18, 1, "Room-814")); //Room 812 to 814
-        adj_list.get(18).add(new Node(17, 1, "Room-812")); //Room 814 to 812
-
-        adj_list.get(18).add(new Node(19, 3, "Restroom-800")); //Room 814 to Restroom 800
-        adj_list.get(19).add(new Node(18, 3, "Room-814")); //Restroom 800 to Room 814
-
-        adj_list.get(19).add(new Node(20, 2, "Room-813")); //Restroom 800 to 813
-        adj_list.get(20).add(new Node(19, 2, "Restroom-800")); //813 to Restroom 800
-
-        adj_list.get(20).add(new Node(21, 3, "Hall 800x500")); //Room 813 to Hall 800x500
-        adj_list.get(21).add(new Node(20, 3, "Room-813")); //Hall 800x500 to Room 813
-
-        adj_list.get(21).add(new Node(22, 20, "Room-529")); //Hall 800x500 to Room 529
-        adj_list.get(22).add(new Node(21, 20, "Hall 800x500")); //Room 529 to Hall 800x500
-
-        adj_list.get(22).add(new Node(23, 3, "Hall 500x650")); //Room 529 TO Hall 500x650
-        adj_list.get(23).add(new Node(22, 3, "Room-529")); //Hall 500x650 to Room 529
-
-        adj_list.get(23).add(new Node(24, 3, "Room-528")); //Hall 500x650 to 528
-        adj_list.get(24).add(new Node(23, 3, "Hall 500x650")); //528 to Hall 500x650
-
-        adj_list.get(24).add(new Node(25, 3, "Room-527")); //Room 528 to 527
-        adj_list.get(25).add(new Node(24, 3, "Room-528")); //Room 527 to 528
-
-        adj_list.get(25).add(new Node(26, 6, "Room-606")); //Room 527 to 606
-        adj_list.get(26).add(new Node(25, 6, "Room-527")); //Room 606 to 527
-
-        adj_list.get(26).add(new Node(27, 10, "Hall 500x600")); //Room 606(Student Lounge to Hall 500x600
-        adj_list.get(27).add(new Node(26, 10, "Student-Lounge-606")); //Hall 500x600 to Room 606
-
-        adj_list.get(27).add(new Node(28, 9, "Room-604-Police")); //Hall 500x600 to 604
-        adj_list.get(28).add(new Node(27, 9, "Hall 500x600")); //604 to Hall 500x600
-
-        adj_list.get(28).add(new Node(29, 2, "Room-605")); //Room 604 to 605
-        adj_list.get(29).add(new Node(28, 2, "Room-604-Police")); //Room 605 to 604
-
-        adj_list.get(29).add(new Node(30, 17, "Hall 600x300")); //Room 605 to Hall 600x300
-        adj_list.get(30).add(new Node(29, 17, "Room-605")); //Hall 600x300 to Room 605
-
-        adj_list.get(30).add(new Node(31, 6, "Room-601")); //Hall 600x300 to Room 601
-        adj_list.get(31).add(new Node(30, 6, "Hall 600x300")); //Room 601 to Hall 600x300
-
-        adj_list.get(30).add(new Node(1,1, "One Stop")); //Hall600x300 to One Stop
-        adj_list.get(1).add(new Node(30,1, "Hall 600x300")); //One Stop to Hall600x300
-
-        adj_list.get(31).add(new Node(0,22, "Main")); //Room 601 to Main
-        adj_list.get(0).add(new Node(31,22, "Room-601")); //Main to Room 601
-
-        adj_list.get(33).add(new Node(30, 2, "Hall 600x300")); //Room 323 to Hall 600x300
-        adj_list.get(30).add(new Node(33, 2, "Room-323")); //Hall 600x300 to Room 323
-
-        adj_list.get(34).add(new Node(33, 5, "Room-323")); //Room 321 to Room 323
-        adj_list.get(33).add(new Node(34, 5, "Room-321")); //Room 323 to 321
-
-        adj_list.get(35).add(new Node(34, 2, "Room-321")); //Room 319 to Room 321
-        adj_list.get(34).add(new Node(35, 2, "Room-319")); //Room 321 to 319
-
-        adj_list.get(36).add(new Node(35, 1, "Room-319")); //Room 315 to 319
-        adj_list.get(35).add(new Node(36, 1, "Room-315")); //Room 319 to 315
 
         calculateDistances(0, "Main");
         for (String roomName : roomNames) { //Sets List View Data
